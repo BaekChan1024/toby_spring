@@ -1,4 +1,7 @@
-package chapter01;
+package chapter01.dao;
+
+import chapter01.connection.ConnectionMaker;
+import chapter01.entity.User;
 
 import java.sql.*;
 

@@ -1,4 +1,4 @@
-package chapter01;
+package chapter01.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
