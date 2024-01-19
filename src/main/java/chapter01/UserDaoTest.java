@@ -1,6 +1,8 @@
 package chapter01;
 
+import chapter01.connection.CountingConnectionMaker;
 import chapter01.connection.DConnectionMaker;
+import chapter01.entity.User;
 import chapter01.factory.DaoFactory;
 import chapter01.dao.UserDao;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +20,12 @@ public class UserDaoTest {
         ApplicationContext ac = new AnnotationConfigApplicationContext(DaoFactory.class);
         UserDao dao1 = ac.getBean("userDao", UserDao.class);
         UserDao dao2 = ac.getBean("userDao", UserDao.class);
-        System.out.println(userDao1 == userDao2);
-        System.out.println(dao1 == dao2);
+        User user = new User();
+        user.setId("test1");
+        user.setName("testName");
+        user.setPassword("testPassword");
+        dao1.add(user);
+        CountingConnectionMaker ccm = ac.getBean("connectionMaker", CountingConnectionMaker.class);
+        System.out.println(ccm.getCounter());
     }
 }
