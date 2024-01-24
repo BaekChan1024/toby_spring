@@ -1,9 +1,9 @@
-package chapter01.factory;
+package chapter02.factory;
 
-import chapter01.connection.ConnectionMaker;
-import chapter01.connection.CountingConnectionMaker;
-import chapter01.connection.DConnectionMaker;
-import chapter01.dao.UserDao;
+import chapter02.connection.ConnectionMaker;
+import chapter02.connection.CountingConnectionMaker;
+import chapter02.connection.DConnectionMaker;
+import chapter02.dao.UserDao;
 import com.mysql.jdbc.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
