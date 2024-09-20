@@ -7,8 +7,10 @@ import toby_spring.hellospring.payment.ExRateProvider;
 import toby_spring.hellospring.exrate.SimpleExRateProvider;
 import toby_spring.hellospring.payment.PaymentService;
 
+import java.time.Clock;
+
 @Configuration
-public class ObjectFactory {
+public class PaymentConfig {
 
     @Bean
     public ExRateProvider exRateProvider() {
@@ -22,6 +24,11 @@ public class ObjectFactory {
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(cachedRateProvider());
+        return new PaymentService(cachedRateProvider(), clock());
+    }
+
+    @Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone();
     }
 }
