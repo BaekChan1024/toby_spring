@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import toby_spring.hellospring.api.ApiTemplate;
 import toby_spring.hellospring.exrate.WebApiExRateProvider;
 
 import java.io.IOException;
@@ -26,6 +27,9 @@ class PaymentServiceTest {
     @Mock
     private ExRateProvider exRateProvider;
 
+    @Mock
+    private ApiTemplate apiTemplate;
+
     @InjectMocks
     private PaymentService paymentService;
 
@@ -37,9 +41,9 @@ class PaymentServiceTest {
     }
 
     @Test
-    void prepare() throws IOException {
+    void prepare() {
         //given
-        PaymentService paymentService = new PaymentService(new WebApiExRateProvider(), clock);
+        PaymentService paymentService = new PaymentService(new WebApiExRateProvider(apiTemplate), clock);
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
         //when & then
