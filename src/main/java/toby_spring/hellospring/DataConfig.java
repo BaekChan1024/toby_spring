@@ -1,6 +1,5 @@
 package toby_spring.hellospring;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +12,9 @@ import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcesso
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import toby_spring.hellospring.data.OrderRepository;
+import toby_spring.hellospring.data.JdbcOrderRepository;
+import toby_spring.hellospring.data.JpaOrderRepository;
+import toby_spring.hellospring.order.OrderRepository;
 
 import javax.sql.DataSource;
 
@@ -40,17 +41,12 @@ public class DataConfig {
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
     }
 
-    @Bean
-    public BeanPostProcessor beanPostProcessor() {
-        return new PersistenceAnnotationBeanPostProcessor();
-    }
-
-    @Bean
-    public OrderRepository orderRepository() {
-        return new OrderRepository();
-    }
+//    @Bean
+//    public BeanPostProcessor beanPostProcessor() {
+//        return new PersistenceAnnotationBeanPostProcessor();
+//    }
 }

@@ -1,19 +1,16 @@
 package toby_spring.hellospring.data;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import toby_spring.hellospring.order.Order;
+import toby_spring.hellospring.order.OrderRepository;
 
-import java.math.BigDecimal;
-
-public class OrderRepository {
+public class JpaOrderRepository implements OrderRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Order save(Order order) {
+    public void save(Order order) {
         entityManager.persist(order);
-        return order;
     }
 }
